@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ produit.nom}}</h1>
+<img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
+<p>
+    Date per :{{ produit.dateper}}
+    Marque :{{ produit.marque}}
+    Categorie :{{ produit.cat}}
+    Prix :{{ produit.prix}}
+    Stock :{{ produit.stock}}
+</p>
+{% if user.is_authenticated %}
+<p>
+<a href="{% url 'add_to_cart' produit.slug %}">Ajouter dans le panier </a>
+</p>
+{% endif %}
+
+
+{% endblock %}
+

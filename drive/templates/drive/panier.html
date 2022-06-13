@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for commande in commandes %}
+
+    <h2> {{ commande.produit.nom }} </h2>
+    <img src="{{ commande.produit.photo.url }}" alt="{{ commande.produit.nom }}" style="max-width: 250px ;">
+    <p>{{commande.quantite}} Article(s) dans le panier </p>
+
+{% endfor %}
+
+
+{% endblock %}

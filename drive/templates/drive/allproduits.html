@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Les produits en stock {% endblock %}
+
+
+{% block content %}
+{% for produit in produits %}
+    <h2>{{ produit.nom }}</h2>
+    <p>{{ produit.dateper }}</p>
+    <img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
+    <a href="{% url 'produit' produit.slug %}">Voir l'article</a>
+{% endfor %}
+
+{% endblock %}

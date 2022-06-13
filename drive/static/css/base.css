@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Quicksand:wght@500&display=swap');
+.head{
+   background-color: rgb(111, 158, 160) ;
+   font-family : 'Quicksand', cursive;
+   text-align: center;
+   margin : 0px auto 0px;
+}
+
+html{   
+min-height: 100%;  
+background: linear-gradient(217deg, rgba(201, 245, 244, 0.692), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(205, 207, 209, 0.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(211, 246, 255, 0.8), rgba(0,0,255,0) 70.71%);      
+}
+
+p{
+    color: rgb(27, 161, 171);
+}
+
+
+form{
+  background-color: rgb(161, 184, 185);
+  font-family : 'Hind siliguri', cursive;
+  box-sizing: border-box; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h1.home{
+  font-size: 55px;
+}
+
+div.home{
+text-align: center;
+font-size: 40px;
+height: 150px;
+margin-top: 220px;
+background: linear-gradient(120deg,#dcbdbd 0%,#4558b6 100%);
+background-clip: border-box;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+div:last-of-type span.home {
+  margin-left:-2000px;
+  animation: slidein 20s;
+}
+
+@keyframes slidein {
+  0% { margin-left:-2000px; }
+  20% { margin-left:-00px; }
+  55% { margin-left:0px; }
+  35% { margin-left:0px; }
+  100% { margin-left:0px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600);
+
+
+body {
+  font-family: 'open sans', helvetica, arial, sans;
+background:url(http://farm8.staticflickr.com/7064/6858179818_5d652f531c_h.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@grey:#2a2a2a;
+@blue:#1fb5bf;
+.log-form {
+  width: 40%;
+  min-width: 420px;
+  max-width: 475px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  
+  box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+  
+  }
+  
+
+
+
+    
+}
