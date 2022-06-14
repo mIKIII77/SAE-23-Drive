@@ -2,7 +2,7 @@
 <html lang="en">
 {%load static%}
 <head>
-    <link rel="stylesheet" href="{%static 'css/base.css' %}">
+    <link rel="stylesheet" href="{%static '/css/base.css' %}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/home">RT SHOP</a>
@@ -21,19 +22,53 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
                 <a class="nav-link" href="/allproduits">PRODUITS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/index">COMMANDES</a>
+                <a class="nav-link" href="{% url 'all_commandes_ordered_by_user' %}">COMMANDES</a>
               </li>
+              {% if user.panier %}
               <li class="nav-item">
-                <a class="nav-link" href="/affiche">PANIER</a>
+                <a class="nav-link" href="{% url 'panier' %}">PANIER ({{user.panier.commandes.count}})</a>
               </li>
+              {% endif %} 
+              {% if user.is_superuser %} 
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Ajout
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+
+              {% endif %}
+               
               <li class="nav-item">
                 <a class="nav-link">{% if user.is_authenticated %}<p>{{user.username}}</p>{% endif %}</a>
               </li>
-            </ul>
 
+              {% if user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-item" href="{% url 'add_catprod' %}""> Ajouter une catégorie de produit </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-item" href="{% url 'add_produit' %}""> Ajouter un produit </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-item" href="{% url 'all_catprod' %}"">Tout les catégories de produit </a>
+              
+              </li>
+
+
+              {% endif %}
+            </ul>
 
             <form class="d-flex">
               <input class="form-control me-2" type="Recherche" placeholder="Recherche" aria-label="Recherche">
@@ -48,16 +83,17 @@
             </form>
           </div>
         </div>
-      </nav>   
-      
-      
-
+      </nav>        
+   
+<main>
+  </main>
 </body>
 
 <body>
 {% block content %}
 
 {% endblock %}
+
 </body>
 
 </html>

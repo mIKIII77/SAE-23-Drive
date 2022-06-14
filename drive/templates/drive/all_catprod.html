@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block content %}
+
+            <div class="row">
+                <div class="col-md-12">
+                    {% for catprod in catprods %}
+                        <div class="card" style="width: 18rem;">
+                            <div class="produit">
+                                <h2>{{ catprod.nom }}</h2>
+                                <p>{{ catprod.descriptif }}</p>
+                                <a href="{% url 'catprod_detail' catprod.id%}"> Details </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+    {% endblock %}

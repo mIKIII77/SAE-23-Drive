@@ -5,11 +5,21 @@
 
 
 {% block content %}
+<div class="produit">
 {% for produit in produits %}
-    <h2>{{ produit.nom }}</h2>
-    <p>{{ produit.dateper }}</p>
-    <img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
-    <a href="{% url 'produit' produit.slug %}">Voir l'article</a>
-{% endfor %}
 
+
+<div class="card" style="width: 18rem;">
+    <div class="produit">
+       <div> <h2>{{ produit.nom }}</h2>
+        <p>{{ produit.dateper }}</p>
+        <img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
+        <a href="{% url 'produit' produit.slug %}">Voir l'article</a>
+   </div> 
+  </div>
+  </div>
+
+
+{% endfor %}
+</div>
 {% endblock %}

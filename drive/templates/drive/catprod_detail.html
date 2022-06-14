@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ catprod.nom}}</h1>
+<img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
+<p>
+    Descriptif :{{ catprod.descriptif}}
+</p>
+
+
+{% endblock %}
+

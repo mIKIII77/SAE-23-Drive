@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drive',
     'clients',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -115,6 +116,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, '/drive/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, '/clients/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULTA_AUTO_FIELD = 'django.db.models.BigAutoField'

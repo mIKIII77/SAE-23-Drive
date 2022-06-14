@@ -8,12 +8,10 @@
     <h1>{{commande.Produit.nom}}</h1>
     <img src="{{ commande.Produit.photo.url }}" alt="{{ commande.Produit.nom }}" style="max-width: 250px ;">
     <p>{{commande.Produit.prix}}</p>
-    <p>{{commande.Produit.description}}</p>
-    <a href="{% url 'delete_commande_panier' commande.id %}">Supprimer ce article</a>
+    <p>{{commande.Produit.dateper}}</p>
+    <p>{{commande.Produit.quantite}}</p>
+    <p>{{commande.datecommande}}</p>
 {% endfor %}
-<p>
-<a href="{% url 'commander_panier' %}">Commander panier</a>
-<a href="{% url 'delete_panier' %}">Delete panier</a>
-</p>
 
-{% endblock %}
+    
+    {% endblock %}

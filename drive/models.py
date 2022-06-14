@@ -1,7 +1,9 @@
 from audioop import reverse
+from datetime import timezone, datetime
 from django.urls import reverse
 from django.db import models
 from django.forms import SlugField
+from requests import delete
 from rtshop.settings import AUTH_USER_MODEL
 # Create your models here.
 
@@ -29,7 +31,6 @@ class Produit(models.Model):
 class Commande(models.Model):
     client = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     Produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
-    date = models.DateField(blank=True, null=True)
     quantite = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
     datecommande = models.DateTimeField(blank=True, null=True)
@@ -44,3 +45,11 @@ class Panier(models.Model):
     
     def __str__(self):
         return f"{self.client.username}"
+
+    def commander(self, *args, **kwargs):
+        for commande in self.commandes.all():
+            commande.ordered = True
+            commande.datecommande = datetime.now(timezone.utc)
+            commande.save()
+        self.commandes.clear()
+        super().delete(*args, **kwargs)

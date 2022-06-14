@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Ajouter un produit{% endblock %}
+
+
+{% block content %}
+<div class="form-articles">
+    <form class="quest" method="post" action="">
+      {% csrf_token %}
+      {{form.nom|as_crispy_field}}
+        {{form.dateper|as_crispy_field}}
+        {{form.photo|as_crispy_field}}
+        {{form.slug|as_crispy_field}}
+        {{form.marque|as_crispy_field}}
+        {{form.cat|as_crispy_field}}
+        {{form.prix|as_crispy_field}}
+        {{form.stock|as_crispy_field}}
+      <div class="button-valid">
+        <p>* - Champs obligatoires </p>
+        <input class="btn btn-success" type="submit" name="submit" value="Valider">
+      </div>
+  </div>
+{% endblock %}
