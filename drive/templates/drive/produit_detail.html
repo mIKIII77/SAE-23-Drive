@@ -3,19 +3,45 @@
 
 {% block content %}
 
-<h1>{{ produit.nom}}</h1>
-<img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
-<p>
-    Date per :{{ produit.dateper}}
-    Marque :{{ produit.marque}}
-    Categorie :{{ produit.cat}}
-    Prix :{{ produit.prix}}
-    Stock :{{ produit.stock}}
-</p>
-{% if user.is_authenticated %}
-<p>
-<a href="{% url 'add_to_cart' produit.slug %}">Ajouter dans le panier </a>
-</p>
+
+<div class="card1">
+  <div class="product">
+    <div class="left-side">
+      <div class="container1">
+        <div class="main-photo">
+          <img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
+        </div>	
+      </div>
+    	<div class="green-apple">
+        <h2>{{ produit.nom}}</h2>
+      </div>
+    </div>
+    <div class="right-side">
+      <div class="text">
+        <h1> <strong>{{ produit.nom}} </strong></h1>
+      </div>
+      <div class="price">
+        <h2><strong>   {{ produit.prix}}€</strong></h2>
+      </div>
+      <div class="info">
+        <span>INFORMATION</span>
+        <ul>
+          <h4>Date de peremption :  {{ produit.dateper}}</h4>
+          <h4>Catégorie du produit: {{ produit.cat}}</h4>
+          <h4>Marque :  {{ produit.marque}}</h4>
+          <h4>En stock :  {{ produit.stock}}</h4>
+        </ul>
+      </div>
+      {% if user.is_authenticated %}
+
+      <div class="btn">
+        <button><a href="{% url 'add_to_cart' produit.slug %}">ADD TO CART</button> </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endif %}
 
 

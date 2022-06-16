@@ -2,18 +2,58 @@
 {% load static %}
 
 {% block content %}
+<head>
+    <title> Mon panier </title>
+  </head>
 
-{% for commande in commandes %}
-
-    <h1>{{commande.Produit.nom}}</h1>
-    <img src="{{ commande.Produit.photo.url }}" alt="{{ commande.Produit.nom }}" style="max-width: 250px ;">
-    <p>{{commande.Produit.prix}}</p>
-    <p>{{commande.Produit.description}}</p>
-    <a href="{% url 'delete_commande_panier' commande.id %}">Supprimer ce article</a>
+<body class="body-article-list">
+    <div class="top-article-list">
+        <h1 class="shadow p-3 mb-5 bg-body rounded ">Mon panier :</h1>
+    </div>
+    <div class="article-table">
+        <table class="table table-sm table-light table-striped table-bordered">
+            <thead>
+              <tr class="table-dark">
+                <th class="table-top" scope="col">Image du produit</th>
+                <th class="table-top" scope="col">Nom du produit</th>
+                <th class="table-top" scope="col">Marque</th>
+                <th class="table-top" scope="col">Date de peremption</th>
+                <th class="table-top" scope="col">Quantité</th>
+                <th class="table-top" scope="col">Prix</th>
+                <th class="table-top" scope="col"></th>
+                </th>
+                <caption>Voici tous les articles qui composent votre panier RT-Shop.</caption>
+              </tr>
+            </thead>
+      {% for commande in commandes %}
+<tr>
+  <td class="table-bot text-center"><img src="{{ commande.Produit.photo.url }}" alt="{{ commande.Produit.nom }}" class="rounded" style="max-width: 50px ; max-height: 50px; min-height: 50px ; min-width: 50px;"> </td>
+  <td class="table-bot">{{commande.Produit.nom}}</td>
+  <td class="table-bot">{{commande.Produit.marque}}</td>
+  <td class="table-bot">{{commande.Produit.dateper}}</td>
+  <td class="table-bot text-center">{{commande.quantite}}</td>
+  <td class="table-bot">{{commande.Produit.prix}} €</td>
+  <td class="table-top text-end">
+        <a href="{% url 'delete_commande_panier' commande.id %}" type="button" class="btn btn-danger btn-sm"> Supprimer </a>  
+  </td>
+</tr>
 {% endfor %}
-<p>
-<a href="{% url 'commander_panier' %}">Commander panier</a>
-<a href="{% url 'delete_panier' %}">Delete panier</a>
-</p>
+
+</table>
+<div class="""total">
+<h4>Prix total: </h4>
+<script> 
+   nbr1= 3;
+   nbr2= 5;
+   res = nbr1 * nbr2;
+  System.out.println(res); </script>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto">
+  <a class="btn btn-light" href="{% url 'commander_panier' %}" type="button">Commander les produits du panier</a>
+  <a class="btn btn-danger btn-sm" type="button" href="{% url 'delete_panier' %}">Supprimer le panier</a>
+</div>
+
+</body>
 
 {% endblock %}
+

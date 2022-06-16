@@ -1,26 +1,27 @@
 {% extends 'base.html' %}
 {%load static%}
 {% block content %}
+<head>
+    <title> Connexion </title>
+  </head>
 <form method="POST">
 {% csrf_token %}
-<div class="log-form">
-    <h2>Login to your account</h2>
-    <form>
+<body class= "login-page-back">
 
-    <p>
-        <label for="username">Nom d'utilisateur</label>
-        <input id="username" type="text" name="username">
-    </p>
-
-    <p>
-        <label for="password ">Mot de passe</label>
-        <input id="password" type="password" name="password">
-    </p>
-
-        <button type="submit" class="btn">Se connecter</button>
-
+<div class="wrapper">
+    <form class="form-signin">       
+        <h2>Connectez-vous</h2>
+      <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Mot de passe" required=""/>      
+      <label class="checkbox">
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>   
     </form>
-</div>
+  </div>
+
+  </div>
+</body>
+
 
 {% endblock %}
 

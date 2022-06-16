@@ -6,10 +6,16 @@
 
 
 {% block content %}
-<div class="form-articles">
-    <form class="quest" method="post" action="">
-      {% csrf_token %}
-      {{form.nom|as_crispy_field}}
+<head>
+    <title> Ajouter un produit </title>
+  </head>
+  <body class="body-article-list">
+    <h1 class="top-article-list shadow p-3 mb-5 bg-body rounded">Page d'ajout d'un nouveau produit</h1>
+  
+    <div class="form-articles">
+      <form class="quest" method="post" action="">
+        {% csrf_token %}
+        {{form.nom|as_crispy_field}}
         {{form.dateper|as_crispy_field}}
         {{form.photo|as_crispy_field}}
         {{form.slug|as_crispy_field}}
@@ -17,9 +23,12 @@
         {{form.cat|as_crispy_field}}
         {{form.prix|as_crispy_field}}
         {{form.stock|as_crispy_field}}
-      <div class="button-valid">
-        <p>* - Champs obligatoires </p>
-        <input class="btn btn-success" type="submit" name="submit" value="Valider">
-      </div>
-  </div>
+        <div class="button-valid">
+          <p>* - Champs obligatoires </p>
+          <input class="btn btn-success" type="submit" name="submit" value="Valider">
+          <a class="btn btn-outline-danger" href="{% url 'all_catprod' %}">Annuler</a>
+        </div>
+    </div>
+  </body>
+
 {% endblock %}

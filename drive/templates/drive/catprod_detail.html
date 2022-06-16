@@ -2,13 +2,24 @@
 {% load static %}
 
 {% block content %}
+<head>
+    <title> catprod.nom </title>
+  </head>
 
-<h1>{{ catprod.nom}}</h1>
-<img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
-<p>
-    Descriptif :{{ catprod.descriptif}}
-</p>
-
+<div class="card text-center">
+    <div class="card-header">
+        {{ catprod.nom}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Description de la catégorie :</h5>
+      <p class="card-text">{{ catprod.descriptif}}</p>
+      <a href="{% url 'all_catprod' %}" class="btn btn-primary">La liste de toute les catégories</a>
+    </div>
+    <div class="card-footer text-muted">
+      Certains produits peuvent être mal catégorisés, si vous apercevez une erreur, 
+      veuillez en référer au développeur à l’adresse suivante : super@super.com
+    </div>
+  </div>
 
 {% endblock %}
 

@@ -53,3 +53,10 @@ class Panier(models.Model):
             commande.save()
         self.commandes.clear()
         super().delete(*args, **kwargs)
+
+    def total_panier(self):
+        total = 0
+        for commande in self.commandes.all():
+            total += commande.Produit.prix * commande.quantite
+        return total
+        

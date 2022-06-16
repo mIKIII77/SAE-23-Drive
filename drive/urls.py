@@ -3,6 +3,7 @@ from . import views
 from .views import *
 from rtshop import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -18,5 +19,10 @@ urlpatterns = [
     path('add_catprod/', add_catprod, name='add_catprod'), # add category of product
     path('add_produit/', add_produit, name='add_produit'), # add product
     path('all_catprod/', all_catprod, name='all_catprod'), # all category of product
+    path('catprod_delete/<catprod_id>/', catprod_delete, name='catprod_delete'), # delete category of product
+    path('catprod_update/<catprod_id>/', catprod_update, name='catprod_update'), # update category of product
     path('catprod_detail/<catprod_id>', catprod_detail, name='catprod_detail'), # category of product detail
+    path('all_produits_admin/', all_produits_admin, name='all_produits_admin'), # all produits admin
+    path('commandes_pdf/', commandes_pdf, name='commandes_pdf'), # commandes pdf
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # static files
+urlpatterns += staticfiles_urlpatterns() # static files

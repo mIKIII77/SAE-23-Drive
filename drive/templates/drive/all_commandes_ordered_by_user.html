@@ -3,15 +3,41 @@
 
 {% block content %}
 
-{% for commande in commandes %}
+<head>
+    <title>Mes commandes </title>
+  </head>
+<body class="body-article-list">
+  <div class="top-article-list">
+    <h1 class="shadow p-3 mb-5 bg-body rounded ">Mes commandes :</h1>
+</div>
+<body class="grid">
+    <div class="article-table">
+      <table class="table table-sm table-light table-striped table-bordered text-center">
 
-    <h1>{{commande.Produit.nom}}</h1>
-    <img src="{{ commande.Produit.photo.url }}" alt="{{ commande.Produit.nom }}" style="max-width: 250px ;">
-    <p>{{commande.Produit.prix}}</p>
-    <p>{{commande.Produit.dateper}}</p>
-    <p>{{commande.Produit.quantite}}</p>
-    <p>{{commande.datecommande}}</p>
-{% endfor %}
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">Produit</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Quantite</th>
+            <th scope="col">Date de commande</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for commande in commandes %}
+          <tr>
+           
+            <th>{{commande.Produit.nom}} 
+            <td> {{commande.Produit.prix}}</td>
+            <td>{{commande.quantite}}</td>
+            <td>{{commande.datecommande}}</td>
+            </th>
+            
 
-    
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+      <caption>Vos dernières commandes, triée dans l'ordre chronologique des commandes.</caption>
+    </div>
+  </body>
     {% endblock %}

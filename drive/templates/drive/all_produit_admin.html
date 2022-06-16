@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Les produits en stock {% endblock %}
+
+
+{% block content %}
+<body class="body-article-list">
+
+<head>
+    <title> Tous les produits </title>
+  </head>
+  <div class="article-table">
+    <div class="top-article-list">
+        <h1 class="shadow p-3 mb-5 bg-body rounded ">La liste des produits (ADMIN)</h1>
+      </div>
+<table class="table table-sm table-light table-striped table-bordered">
+    <thead>
+      <tr class="table-dark">
+        <th class="table-top" scope="col">Image du produit</th>
+        <th class="table-top" scope="col">Nom du produit</th>
+        <th class="table-top" scope="col">Marque</th>
+        <th class="table-top" scope="col">Catégorie</th>
+        <th class="table-top" scope="col">Date de peremption</th>
+        <th class="table-top" scope="col">Prix</th>
+        <th class="table-top" scope="col">Stock</th>
+        <th class="table-top" scope="col"></th>
+        </th>
+        <caption>Les produits actuellement présents dans votre panier RT - SHOP</caption>
+      </tr>
+    </thead>
+{% for produit in produits %}
+    <tr>
+<td class="table-bot text-center"><img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" class="rounded" style="max-width: 50px ; max-height: 50px; min-height: 50px ; min-width: 50px;"> </td>
+<td class="table-bot">{{produit.nom}}</td>
+<td class="table-bot">{{produit.marque}}</td>
+<td class="table-bot">{{produit.cat}}</td>
+<td class="table-bot">{{produit.dateper}}</td>
+<td class="table-bot text-center">{{produit.prix}}€</td>
+<td class="table-bot text-center">{{produit.stock}}</td>
+<td class="table-top text-end">
+<a href="{% url 'delete_panier' %}" type="button" class="btn btn-danger btn-sm"> Supprimer </a>  
+</td>
+</tr>
+
+
+
+
+
+
+
+</div>
+
+</body>
+{% endfor %}
+</div>
+
+
+{% endblock %}

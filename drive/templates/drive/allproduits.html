@@ -5,21 +5,32 @@
 
 
 {% block content %}
-<div class="produit">
+
+<head>
+    <title> Tous les produits </title>
+  </head>
+
 {% for produit in produits %}
-
-
-<div class="card" style="width: 18rem;">
-    <div class="produit">
-       <div> <h2>{{ produit.nom }}</h2>
-        <p>{{ produit.dateper }}</p>
-        <img src="{{ produit.photo.url }}" alt="{{ produit.nom }}" style="max-width: 250px ;">
-        <a href="{% url 'produit' produit.slug %}">Voir l'article</a>
-   </div> 
+<div class="card bg-light border-dark mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ produit.photo.url }}" class="rounded img-thumbnail" alt="{{ produit.nom }}" style="max-width: 200px ; min-width: 200px; max-height: 200px; min-height: 200px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{produit.nom}}</h5>
+        <p class="card-text"> Catégorie du produit : {{produit.cat}}</p>
+        <p class="card-text"><small class="text-muted">Il reste {{ produit.stock}} produit en stock.</small></p>
+      </div>
+      <a href="{% url 'produit' produit.slug %}" class="btn btn-outline-dark">Details du produit</a>
+    </div>
   </div>
-  </div>
+</div>
+
 
 
 {% endfor %}
 </div>
+
+
 {% endblock %}

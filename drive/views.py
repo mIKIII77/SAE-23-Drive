@@ -1,10 +1,14 @@
 from http import client
+from this import d
 from click import command
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
+import io
 from django.shortcuts import get_object_or_404, redirect, render
 from drive.models import *
 from drive.forms import *
-
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
 
 def home(request):
     return render(request, 'drive/home.html')
@@ -12,6 +16,10 @@ def home(request):
 def allproduits(request):
     produits = Produit.objects.all()
     return render(request, 'drive/allproduits.html', {'produits': produits})
+
+def all_produits_admin(request):
+    produits = Produit.objects.all()
+    return render(request, 'drive/all_produit_admin.html', {'produits': produits})
 
 def produit_detail(request, slug):
     produit = get_object_or_404(Produit, slug=slug)
@@ -35,7 +43,6 @@ def add_to_cart(request, slug):
 
 def panier(request):
     panier = get_object_or_404(Panier, client=request.user)
-
     return render(request, 'drive/panier.html', context={'commandes': panier.commandes.all()})
 
 def commander_panier(request):
@@ -94,3 +101,46 @@ def catprod_detail(request, catprod_id):
     catprod = get_object_or_404(Catprod, pk=catprod_id)
     return render(request, 'drive/catprod_detail.html', {'catprod': catprod})
 
+def catprod_delete(request, catprod_id):
+    catprod = get_object_or_404(Catprod, pk=catprod_id)
+    catprod.delete()
+    return redirect('all_catprod')
+
+def catprod_update(request, catprod_id):
+    catprod = get_object_or_404(Catprod, pk=catprod_id)
+    if request.method == 'POST':
+        form = CatprodForm(request.POST, instance=catprod)
+        if form.is_valid():
+            form.save()
+            return redirect('all_catprod')
+    else:
+        form = CatprodForm(instance=catprod)
+    return render(request, 'drive/catprod_update.html', {'form': form})
+
+def commandes_pdf(request):
+    buf = io.BytesIO()
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 12)
+
+    lines = [
+        "This is line 1",
+        "This is line 2",
+        "This is line 3",
+    ]
+
+
+    for commande in Commande.objects.filter(client=request.user, ordered=True):
+        textob.textLine(commande.client.nom)
+        textob.textLine(commande.Produit.nom)
+        textob.textLine(commande.Produit.prix)
+        textob.textLine(commande.datecommande)
+        textob.textLine(commande.quantite)
+
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    return FileResponse(buf, as_attachment=True, filename='commandes.pdf')

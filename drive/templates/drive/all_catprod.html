@@ -1,18 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block content %}
+{% block content %}
+<head>
+    <title> toutes les catégories </title>
+  </head>
+<body class="body-article-list">
+    <div class="top-article-list">
+        <h1 class="shadow p-3 mb-5 bg-body rounded ">La liste des catégories de produits</h1>
+      </div>
+      <div class="article-table">
+<table class="table table-sm table-light table-striped table-bordered">
+    <thead>
+      <tr class="table-dark">
+        <th class="table-top" scope="col">Nom de la catégorie</th>
+        <th class="table-top text-end" scope="col"> <a href="{% url 'add_catprod' %}" type="button"
+            class="btn btn-secondary btn-sm">Ajouter une catégorie</a>
+        </th>
+        <caption>La table des catégories de produit actuellement présents dans la base de données du RT - SHOP</caption>
+      </tr>
+    </thead>
 
-            <div class="row">
-                <div class="col-md-12">
-                    {% for catprod in catprods %}
-                        <div class="card" style="width: 18rem;">
-                            <div class="produit">
-                                <h2>{{ catprod.nom }}</h2>
-                                <p>{{ catprod.descriptif }}</p>
-                                <a href="{% url 'catprod_detail' catprod.id%}"> Details </a>
-                            </div>
-                        </div>
-                    {% endfor %}
+{% for catprod in catprods %}
+<tr>
+  <td class="table-bot">{{ catprod.nom}}</td>
+  <td class="table-top text-end">
+      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a href="{% url 'catprod_detail' catprod.id%}" type="button" class="btn btn-outline-info btn-sm"> Détails de la catégorie </a>
+        <a href="{% url 'catprod_update' catprod.id%}" type="button" class="btn btn-outline-success btn-sm"> Mettre à jour </a>
+        <a href="{% url 'catprod_delete' catprod.id%}" type="button" class="btn btn-danger btn-sm"> Supprimer </a>
+      </div>
+      
+  </td>
+</tr>
+{% empty %}
+</table>
+<tr>
+<td colspan="4">Aucune catégorie de produite est présente, votre base de données est vide ! <a href="{% url 'add_catprod' %}"> Ajouter le
+    premiere article</article></a>.</td>
+</tr>
+</div>
+</div>
+</body>
+{% endfor %}
+{% endblock %}
 
-    {% endblock %}
