@@ -4,6 +4,9 @@
 {% block content %}
 <head>
     <title> Mon panier </title>
+     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
   </head>
 
 <body class="body-article-list">
@@ -42,11 +45,16 @@
 </table>
 <div class="""total">
 <h4>Prix total: </h4>
-<script> 
-   nbr1= 3;
-   nbr2= 5;
-   res = nbr1 * nbr2;
-  System.out.println(res); </script>
+<h1 id="res"></h1>
+       <py-script>
+res = 0
+a = 5
+b = quantite
+res = a * b
+
+s = f"{res:.2f} €"
+pyscript.write('res', s)
+        </py-script>
 </div>
 <div class="d-grid gap-2 col-6 mx-auto">
   <a class="btn btn-light" href="{% url 'commander_panier' %}" type="button">Commander les produits du panier</a>

@@ -33,3 +33,9 @@ class ProduitForm(ModelForm):
             'prix': forms.NumberInput(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+    
+    def clean_photo(self):
+        photo = self.cleaned_data['photo']
+        if photo.content_type not in ['image/jpeg', 'image/png', 'image/jpg']:
+            raise forms.ValidationError("Photo non valide")
+        return photo

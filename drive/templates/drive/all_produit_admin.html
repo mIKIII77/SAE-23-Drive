@@ -39,7 +39,8 @@
 <td class="table-bot text-center">{{produit.prix}}€</td>
 <td class="table-bot text-center">{{produit.stock}}</td>
 <td class="table-top text-end">
-<a href="{% url 'delete_panier' %}" type="button" class="btn btn-danger btn-sm"> Supprimer </a>  
+<a href="{% url 'update_produit' produit.id %}" type="button" class="btn btn-success btn-sm"> Mettre à jour </a>  
+<a href="{% url 'delete_produit' produit.id %}" type="button" class="btn btn-danger btn-sm"> Supprimer </a>  
 </td>
 </tr>
 

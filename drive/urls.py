@@ -24,5 +24,7 @@ urlpatterns = [
     path('catprod_detail/<catprod_id>', catprod_detail, name='catprod_detail'), # category of product detail
     path('all_produits_admin/', all_produits_admin, name='all_produits_admin'), # all produits admin
     path('commandes_pdf/', commandes_pdf, name='commandes_pdf'), # commandes pdf
+    path('delete_produit/<produit_id>/', delete_produit, name='delete_produit'), # delete produit
+    path('update_produit/<produit_id>/', update_produit, name='update_produit'), # update produit
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # static files
 urlpatterns += staticfiles_urlpatterns() # static files

@@ -39,5 +39,10 @@
       </table>
       <caption>Vos dernières commandes, triée dans l'ordre chronologique des commandes.</caption>
     </div>
+    <div class="button-valid">
+      <p>En cliquant sur ce button vous pouvez générer un fichier de type .PDF avec l'ensemble de vos commandes. </p>
+    <a href="{% url 'commandes_pdf'%}" type="button" class="btn btn-outline-info"> Télécharger votre fichier </a>
+    </div>
+    
   </body>
     {% endblock %}

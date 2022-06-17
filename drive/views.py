@@ -1,3 +1,4 @@
+from cgitb import text
 from http import client
 from this import d
 from click import command
@@ -82,16 +83,31 @@ def add_catprod(request):
 def add_produit(request):
     submitted = False
     if request.method == 'POST':
-        form = ProduitForm(request.POST)
+        form = ProduitForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('allproduits')
+            return redirect('all_produits_admin')
     else:
         form = ProduitForm
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'drive/add_produit.html', {'form': form, 'submitted': submitted})
 
+def delete_produit(request, produit_id):
+    produit = get_object_or_404(Produit, pk=produit_id)
+    produit.delete()
+    return redirect('all_produits_admin')
+
+def update_produit(request, produit_id):
+    produit = get_object_or_404(Produit, pk=produit_id)
+    if request.method == 'POST':
+        form = ProduitForm(request.POST, instance=produit)
+        if form.is_valid():
+            form.save()
+            return redirect('all_produits_admin')
+    else:
+        form = ProduitForm(instance=produit)
+    return render(request, 'drive/update_produit.html', {'form': form})
 
 def all_catprod(request):
     catprods = Catprod.objects.all()
@@ -124,19 +140,24 @@ def commandes_pdf(request):
     textob.setTextOrigin(inch, inch)
     textob.setFont("Helvetica", 12)
 
+    commandes = Commande.objects.filter(client=request.user, ordered=True)
+
     lines = [
-        "This is line 1",
-        "This is line 2",
-        "This is line 3",
+        "Voici vos commandes :",
     ]
 
+    for commande in commandes:
+        lines.append(f"")
+        lines.append(f"Vous avez commandé : {commande.Produit.nom} de la marque {commande.Produit.marque} en quantité de : {commande.quantite}.)")
+        lines.append(f"Prix unité de ce produit : {commande.Produit.prix}€.")
+        lines.append(f"Vous avez payé em totale pour ce(s) produits :{commande.Produit.prix * commande.quantite}€.")
+        lines.append(f"Ce(s) produits ont été commandés le : {commande.datecommande}.")
+        lines.append(f"----------------------------------------")
 
-    for commande in Commande.objects.filter(client=request.user, ordered=True):
-        textob.textLine(commande.client.nom)
-        textob.textLine(commande.Produit.nom)
-        textob.textLine(commande.Produit.prix)
-        textob.textLine(commande.datecommande)
-        textob.textLine(commande.quantite)
+    for line in lines:
+        textob.textLine(line)
+ 
+    
 
     c.drawText(textob)
     c.showPage()
