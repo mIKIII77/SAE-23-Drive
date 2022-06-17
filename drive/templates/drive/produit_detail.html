@@ -3,6 +3,7 @@
 
 {% block content %}
 
+<body class="body-article-list">
 
 <div class="card1">
   <div class="product">
@@ -33,14 +34,17 @@
         </ul>
       </div>
       {% if user.is_authenticated %}
-
       <div class="btn">
-        <button><a href="{% url 'add_to_cart' produit.slug %}">ADD TO CART</button> </a>
+        <button><a href="{% url 'add_to_cart' produit.slug %}">Ajouter ce article au pannier</a>
       </div>
     </div>
   </div>
 </div>
+{% else %}
+<div class="btn">
+  <button><a href="{% url 'login' %}">Connectez-vous pour continuer</a>
 
+</body>
 
 {% endif %}
 

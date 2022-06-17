@@ -1,4 +1,5 @@
 from audioop import reverse
+from contextlib import nullcontext
 from datetime import timezone, datetime
 from django.urls import reverse
 from django.db import models
@@ -18,7 +19,7 @@ class Catprod(models.Model):
 class Produit(models.Model):
     nom = models.CharField(max_length=255)
     dateper = models.DateField()
-    photo = models.ImageField(upload_to='photosprod')
+    photo = models.ImageField(blank=False, null=False, upload_to='photosprod')
     slug = models.SlugField(max_length=255)
     marque = models.CharField(max_length=255)
     cat = models.ForeignKey(Catprod, models.DO_NOTHING, db_column='cat')

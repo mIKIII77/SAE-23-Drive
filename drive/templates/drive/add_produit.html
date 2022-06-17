@@ -13,7 +13,7 @@
     <h1 class="top-article-list shadow p-3 mb-5 bg-body rounded">Page d'ajout d'un nouveau produit</h1>
   
     <div class="form-articles">
-      <form class="quest" method="post" action="">
+      <form class="quest" method="post" action="" enctype="multipart/form-data" >
         {% csrf_token %}
         {{form.nom|as_crispy_field}}
         {{form.dateper|as_crispy_field}}

@@ -7,7 +7,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
-    path('home', views.home, name='home'), # home page
+    path('', views.home, name='home'), # home page
     path('allproduits/', views.allproduits, name='allproduits'), # allproduits/
     path('produit/<str:slug>/', produit_detail, name='produit'), # <str:slug> is a variable
     path('produit/<str:slug>/add-to-cart/', add_to_cart, name='add_to_cart'), # add to cart

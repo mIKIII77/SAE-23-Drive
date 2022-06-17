@@ -6,20 +6,31 @@
   </head>
 <form method="POST">
 {% csrf_token %}
-<body class= "login-page-back">
 
-<div class="wrapper">
-    <form class="form-signin">       
-        <h2>Inscrivez-vous</h2>
-        <input type="text" class="form-control" name="username" placeholder="Adresse E-Mail" required="" autofocus="" />
-      <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="Mot de passe" required=""/>      
-      <label class="checkbox">
-      </label>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>   
-    </form>
-  </div>
+<body class= "login-page-back">
+<div class="login-box">
+  <h2>Inscription RT - SHOP</h2>
+  <form>
+    <div class="user-box">
+      <input type="text" class="form-control" name="username" placeholder="Adresse E-Mail" required="" autofocus="" />   
+    </div>
+
+    <div class="user-box">
+            <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur" required="" autofocus="" /> 
+    </div>
+
+    <div class="user-box">
+      <input type="password" class="form-control" name="password" placeholder="Mot de passe" required=""/> 
+    </div>
+
+    <a href="#">
+       <button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
+    </a>
+    <p>* - Tout les champs sont obligatoires </p>
+  </form>
+</div>
 </body>
+
 
 {% endblock %}
 

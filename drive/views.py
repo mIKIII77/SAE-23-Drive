@@ -80,6 +80,10 @@ def add_catprod(request):
             submitted = True
     return render(request, 'drive/add_catprod.html', {'form': form, 'submitted': submitted})
 
+
+
+
+
 def add_produit(request):
     submitted = False
     if request.method == 'POST':
@@ -92,6 +96,11 @@ def add_produit(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'drive/add_produit.html', {'form': form, 'submitted': submitted})
+
+
+
+
+
 
 def delete_produit(request, produit_id):
     produit = get_object_or_404(Produit, pk=produit_id)
